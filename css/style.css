@@ -32,3 +32,18 @@ button {
 .selected-number {
   background-color: lightgreen;
 }
+
+h1 {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  color: red;
+}
+#megasena-buttons {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
