@@ -1,8 +1,21 @@
 var state = { board: [], currentGame: [], savedGames: [] };
 
 function start() {
+  readLocalStorage();
   createBoard();
   newGame();
+}
+function readLocalStorage() {
+  if (!window.localStorage) {
+    return;
+  }
+  var savedGamesFromLocalStorage = window.localStorage.getItem('saved-Games');
+  if (savedGamesFromLocalStorage) {
+    state.savedGames = JSON.parse(savedGamesFromLocalStorage); //analisar pra ver se é compatível PARSE
+  }
+}
+function writeToLocalStorage() {
+  window.localStorage.setItem('saved-Games', JSON.stringify(state.savedGames));
 }
 function addNumberToGame(numberToAdd) {
   if (numberToAdd < 1 || numberToAdd > 60) {
@@ -34,6 +47,7 @@ function saveGame() {
     return;
   }
   state.savedGames.push(state.currentGame);
+  writeToLocalStorage();
   newGame();
 }
 function removeNumberFromGame(numberToRemove) {
